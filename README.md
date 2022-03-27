@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Creating a repository with Rails 7 using Hotwire for simple to-do list control
 
-Things you may want to cover:
+### Functionalities
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Create a to-do item
+* Edit a to-do item
+* Delete a to-do item
+* Mark an item as complete
+* Mark an item as unfinished
+* Navigate between a completed and unfinished item
