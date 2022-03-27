@@ -1,8 +1,7 @@
-<%= form_with(model: todo, class: "contents") do |form| %>
+<%= form_with(model: todo, id: "#{dom_id(todo)}_form") do |f| %>
   <% if todo.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
-
       <ul>
         <% todo.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,18 +9,9 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :status %>
-    <%= form.number_field :status, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex items-stretch flex-grow">
+    <%= f.label :name, class: "sr-only" %>
+    <%= f.text_field :name, class: "block w-full rounded-none rounded-l-md sm:text-sm border-gray-300", placeholder: "Add a new todo..." %>
+    <%= f.submit class: "-ml-px relative px-4 py-2 border border-blue-600 text-sm font-medium rounded-r-md text-white bg-blue-600 hover:bg-blue-700" %>
   </div>
 <% end %>
