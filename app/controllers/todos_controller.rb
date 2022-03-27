@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[show edit update destroy]
+  before_action :set_todo, only: %i[show edit update destroy change_status]
 
   def index
-    @todos = Todo.all
+    @todos = Todo.where(status: params[:status].presence || 'incomplete')
   end
 
   def show; end
@@ -50,6 +50,15 @@ class TodosController < ApplicationController
       format.turbo_stream { render(turbo_stream: turbo_stream.remove("#{helpers.dom_id(@todo)}_container")) }
       format.html { redirect_to(todos_url, notice: 'Todo was successfully destroyed.') }
       format.json { head(:no_content) }
+    end
+  end
+
+  def change_status
+    @todo.update(status: todo_params[:status])
+
+    respond_to do |format|
+      format.turbo_stream { render(turbo_stream: turbo_stream.remove("#{helpers.dom_id(@todo)}_container")) }
+      format.html { redirect_to(todos_path, notice: 'Updated todo status.') }
     end
   end
 
